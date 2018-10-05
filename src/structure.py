@@ -8,6 +8,7 @@ from numpy import sin, cos, arcsin, arccos, arctan
 import math
 from scipy.constants import pi, e
 import sys
+import os, os.path
 
 # Only 1 vector now
 def cart_to_sph(p):
@@ -21,10 +22,12 @@ def get_structure(name):
     l_OH = 0.96
     p1 = numpy.array([sin(angle_w / 2), cos(angle_w / 2), 0])
     p2 = numpy.array([-sin(angle_w / 2), cos(angle_w / 2), 0])
+    curr_dir = os.path.dirname(os.path.abspath(__file__))
+    
     if "Zn" in name:
-        f_name = "../data/Zn0.25V2O5(H2O)ICSD82328.cif"
+        f_name = os.path.join(curr_dir, "../data/Zn0.25V2O5(H2O)ICSD82328.cif")
     elif "Co" in name:
-        f_name = "../data/Co0.25V2O5(H2O)ICSD50659.cif"
+        f_name = os.path.join(curr_dir, "../data/Co0.25V2O5(H2O)ICSD50659.cif")
     else:
         return None
     mol = read(f_name)

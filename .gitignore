@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+/data/Zn0.25V2O5(H2O)ICSD82328.pdb
+/data/Zn0.25V2O5(H2O)ICSD82328.vesta
+/run.py~
+/src/params.json~
+/src/relax.py~
+/src/structure.py~

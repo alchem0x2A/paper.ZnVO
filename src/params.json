@@ -1,0 +1,35 @@
+{
+  "relax": {
+    "xc": "vdW-DF2",
+    "kpts": {
+      "gamma": true,
+      "density": 5.0
+    },
+    "basis": "dzp",
+    "mode": {
+      "ecut": 500.0,
+      "name": "pw"
+    },
+    "occupations": {
+      "width": 0.025,
+      "name": "fermi-dirac"
+    }
+  },
+
+    "gs": {
+	"xc": "vdW-DF2",
+	"kpts": {
+	    "gamma": true,
+	    "density": 10
+	},
+	"basis": "dzp",
+	"mode": {
+	    "ecut": 800,
+	    "name": "pw"
+	},
+	"occupations": {
+	    "width": 0.025,
+	    "name": "fermi-dirac"
+	}
+    }
+}
