@@ -108,3 +108,7 @@ venv.bak/
 /src/params.json~
 /src/relax.py~
 /src/structure.py~
+lsf*
+*~
+*#*
+

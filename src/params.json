@@ -13,23 +13,28 @@
     "occupations": {
       "width": 0.025,
       "name": "fermi-dirac"
+    },
+    "parallel": {
+      "band": 4
     }
   },
-
-    "gs": {
-	"xc": "vdW-DF2",
-	"kpts": {
-	    "gamma": true,
-	    "density": 10
-	},
-	"basis": "dzp",
-	"mode": {
-	    "ecut": 800,
-	    "name": "pw"
-	},
-	"occupations": {
-	    "width": 0.025,
-	    "name": "fermi-dirac"
-	}
+  "gs": {
+    "xc": "vdW-DF2",
+    "kpts": {
+      "gamma": true,
+      "density": 10
+    },
+    "basis": "dzp",
+    "mode": {
+      "ecut": 800,
+      "name": "pw"
+    },
+    "occupations": {
+      "width": 0.025,
+      "name": "fermi-dirac"
+    },
+    "parallel": {
+      "band": 4
     }
+  }
 }

@@ -8,8 +8,9 @@ import shutil
 from ase.parallel import paropen, parprint, world, rank, broadcast
 
 # Name=Zn,  Co
-def main(name, root="../ZnVO/",
-         # root="/cluster/scratch/ttian/ZnVO",
+def main(name,
+         # root="../ZnVO/",
+         root="/cluster/scratch/ttian/ZnVO",
          clean=False):
     if name not in ("Zn", "Co"):
         return False

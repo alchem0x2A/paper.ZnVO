@@ -7,7 +7,7 @@ import time
 from ase.parallel import parprint
 from ase.io import read
 import ase.db
-from ase.optimize import BFGS
+from ase.optimize import QuasiNewton
 from ase.constraints import UnitCellFilter, StrainFilter
 from ase.io.trajectory import Trajectory
 
@@ -34,30 +34,37 @@ def relax(atoms, name="", base_dir="./",
                                 "{}_relax.log".format(name))
     # If has trajectory, use the last image
     if os.path.exists(traj_filename):
-        t = Trajectory(traj_filename)
-        atoms = t[-1]           # use the last image
+        try:
+            t = Trajectory(traj_filename)
+        except Exception:
+            pass
+        else:
+            atoms = t[-1]           # use the last image
 
     calc = GPAW(**params["relax"])
     atoms.set_calculator(calc)
     # optimizations
     max_iter = 3
-    for i in range(max_iter):
+    i = 0
         # unitcell optimization
-        sf = StrainFilter(atoms, mask=[1, 1, 1, 0, 0, 0])
-        atoms.set_constraint(sf)
-        opt_cell = BFGS(atoms, logfile=log_filename,
-                        trajectory=traj_filename)
-        opt_cell.run(fmax=fmax)
-        parprint("Iter {}, unit cell optimization: stress {}, force {}".format(i,
-                                                                               max(atoms.get_stress()),
-                                                                               max(atoms.get_forces())))
+    sf = StrainFilter(atoms, mask=[1, 1, 1, 0, 0, 0])
+        # parprint(atoms, atoms.constraints)
+        # atoms.set_constraint(sf)
+        # parprint(atoms, atoms.constraints)
+    opt_cell = QuasiNewton(sf, logfile=log_filename,
+                               trajectory=traj_filename)
+        
+    opt_cell.run(fmax=fmax)
+    parprint("Iter {}, unit cell optimization: stress {}, force {}".format(i,
+                                                                           max(atoms.get_stress()),
+                                                                           max(atoms.get_forces())))
         # remove the constraints
-        atoms.set_constraint()  # Free!
-        opt_norm = BFGS(atoms,
-                        logfile=log_filename,
-                        trajectory=traj_filename)
-        opt_norm.run(fmax=fmax)
-        parprint("Iter {}, atoms optimization: stress {}, force {}".format(i,
+    atoms.set_constraint()  # Free!
+    opt_norm = QuasiNewton(atoms,
+                           logfile=log_filename,
+                               trajectory=traj_filename)
+    opt_norm.run(fmax=fmax)
+    parprint("Iter {}, atoms optimization: stress {}, force {}".format(i,
                                                                            max(atoms.get_stress()),
                                                                            max(atoms.get_forces())))
 
