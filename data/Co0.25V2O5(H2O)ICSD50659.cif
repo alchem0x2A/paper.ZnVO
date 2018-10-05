@@ -1,0 +1,96 @@
+
+#(C) 2018 by FIZ Karlsruhe - Leibniz Institute for Information Infrastructure.  All rights reserved.
+data_50659-ICSD
+_database_code_ICSD 50659
+_audit_creation_date 2000-07-15
+_audit_update_record 2012-08-01
+_chemical_name_systematic 'Cobalt vanadium oxide (0.25/2/5)- sigma'
+_chemical_formula_structural 'Co0.25 V2 O5 (H2 O)'
+_chemical_formula_sum 'H2 Co0.25 O6 V2'
+_exptl_crystal_density_diffrn 3.12
+_publ_section_title
+
+;
+Crystal structures and lattice distortions of sigma-type layered vanadium
+bronzes: sigma-M(0,25) V2 O5.H2 O (M = Mg, Co, Ni)
+;
+loop_
+_citation_id
+_citation_journal_full
+_citation_year
+_citation_journal_volume
+_citation_page_first
+_citation_page_last
+_citation_journal_id_ASTM
+primary 'Journal of Solid State Chemistry' 1999 144 181 187 JSSCBI
+loop_
+_publ_author_name
+'Oka, Y.'
+'Yao, T.'
+'Yamamoto, N.'
+_cell_length_a 10.616(3)
+_cell_length_b 8.028(3)
+_cell_length_c 10.732(5)
+_cell_angle_alpha 90.
+_cell_angle_beta 91.40(3)
+_cell_angle_gamma 90.
+_cell_volume 914.36
+_cell_formula_units_Z 8
+_symmetry_space_group_name_H-M 'P 1 21/a 1'
+_symmetry_Int_Tables_number 14
+_refine_ls_R_factor_all 0.049
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 'x+1/2, -y+1/2, z'
+2 '-x, -y, -z'
+3 '-x+1/2, y+1/2, -z'
+4 'x, y, z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Co2+ 2
+V4+ 4.75
+O2- -2
+H1+ 1
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_B_iso_or_equiv
+_atom_site_occupancy
+_atom_site_attached_hydrogens
+Co1 Co2+ 2 b 0 0.5 0.5 . 1. 0
+V1 V4+ 4 e 0.70256(9) 0.7178(1) 0.1420(1) 0.75(2) 1. 0
+V2 V4+ 4 e 0.68763(8) 0.3404(1) 0.1421(1) 0.79(2) 1. 0
+V3 V4+ 4 e 0.91687(8) 0.0395(1) 0.13939(9) 0.75(2) 1. 0
+V4 V4+ 4 e 0.47567(8) 0.0317(1) 0.16165(9) 0.66(2) 1. 0
+O1 O2- 4 e 0.8139(3) 0.5194(5) 0.1220(3) 0.70(7) 1. 0
+O2 O2- 4 e 0.5808(3) 0.5370(5) 0.1087(4) 0.87(7) 1. 0
+O3 O2- 4 e 0.7896(3) 0.1922(5) 0.0803(4) 1.01(8) 1. 0
+O4 O2- 4 e 0.5253(3) 0.2403(5) 0.1193(4) 0.82(7) 1. 0
+O5 O2- 4 e 0.8324(3) 0.8667(5) 0.0904(4) 0.99(8) 1. 0
+O6 O2- 4 e 0.5726(3) 0.8909(5) 0.1016(4) 1.05(8) 1. 0
+O7 O2- 4 e 0.7076(4) 0.7366(6) 0.2914(4) 1.5(1) 1. 0
+O8 O2- 4 e 0.7037(4) 0.3186(6) 0.2901(4) 1.5(1) 1. 0
+O9 O2- 4 e 0.9039(4) 0.0407(6) 0.2869(4) 1.68(9) 1. 0
+O10 O2- 4 e 0.4903(4) 0.0185(6) 0.3138(4) 1.54(9) 1. 0
+O11 O2- 4 e 0.005(1) 0.7579(7) 0.4878(8) . 1. 0
+O12 O2- 4 e 0.8085(4) 0.505(1) 0.5096(5) . 1. 0
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_type_symbol
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_12
+_atom_site_aniso_U_13
+_atom_site_aniso_U_23
+Co1 Co2+ 0.0303(8) 0.032(1) 0.0145(7) -.0034(6) 0.0014(5) -.0019(6)
+O11 O2- 0.198(9) 0.017(3) 0.043(5) -.003(5) 0.034(5) 0.000(3)
+O12 O2- 0.026(3) 0.191(9) 0.024(3) 0.005(5) 0.000(3) -.009(6)
+#End of TTdata_50659-ICSD
