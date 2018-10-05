@@ -10,6 +10,7 @@ import ase.db
 from ase.optimize import QuasiNewton
 from ase.constraints import UnitCellFilter, StrainFilter
 from ase.io.trajectory import Trajectory
+from ase.parallel import parprint
 
 from ase.calculators.vasp import Vasp
 
@@ -27,13 +28,13 @@ def relax(atoms, name="", base_dir="./",
     # If has trajectory, use the last image
     # Compulsory for VASP to change to the working directory!
     os.chdir(base_dir)
-    print(os.path.abspath(os.path.curdir))
+    parprint(os.path.abspath(os.path.curdir))
     # VASP restart only possible for CONTCAR existence
     if not os.path.exists("CONTCAR"):
         params["relax"]["restart"] = False
     calc = Vasp(**params["relax"])
     atoms.set_calculator(calc)
-    print("VASP", calc.atoms)
+    parprint("VASP", calc.atoms)
     # optimizations
     atoms.get_potential_energy()
     return True

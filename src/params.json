@@ -2,11 +2,11 @@
     "relax": {
 	"restart": true,
 	"xc": "pbe",
-	"setups" : {"H": "_s",
-		    "O": "_s_GW",
-		    "V": "_sv_GW",
-		    "Zn": "_sv_GW",
-		    "Co": "_sv_GW"}, 
+	"setups" : {"H": "",
+		    "O": "",
+		    "V": "",
+		    "Zn": "",
+		    "Co": ""}, 
 	"kpts": {
 	    "gamma": true,
 	    "density": 5.0
@@ -24,6 +24,6 @@
 	"prec": "Accurate",
 	"nsw": 500,
 	"npar": 4,
-	"kpar": 4
+	"kpar": 1
   }
 }
