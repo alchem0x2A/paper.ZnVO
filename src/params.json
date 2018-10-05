@@ -1,40 +1,29 @@
 {
-  "relax": {
-    "xc": "vdW-DF2",
-    "kpts": {
-      "gamma": true,
-      "density": 5.0
-    },
-    "basis": "dzp",
-    "mode": {
-      "ecut": 500.0,
-      "name": "pw"
-    },
-    "occupations": {
-      "width": 0.025,
-      "name": "fermi-dirac"
-    },
-    "parallel": {
-      "band": 4
-    }
-  },
-  "gs": {
-    "xc": "vdW-DF2",
-    "kpts": {
-      "gamma": true,
-      "density": 10
-    },
-    "basis": "dzp",
-    "mode": {
-      "ecut": 800,
-      "name": "pw"
-    },
-    "occupations": {
-      "width": 0.025,
-      "name": "fermi-dirac"
-    },
-    "parallel": {
-      "band": 4
-    }
+    "relax": {
+	"restart": true,
+	"xc": "pbe",
+	"setups" : {"H": "_s",
+		    "O": "_s_GW",
+		    "V": "_sv_GW",
+		    "Zn": "_sv_GW",
+		    "Co": "_sv_GW"}, 
+	"kpts": {
+	    "gamma": true,
+	    "density": 5.0
+	},
+	"amix": 0.1,
+	"bmix": 0.01,
+	"ismear": 0,
+	"sigma": 0.025,
+	"ediff": 1e-7,
+	"lwave": true,
+	"lcharg": true,
+	"encut": 500,
+	"ibrion": 2,
+	"isif": 3,
+	"prec": "Accurate",
+	"nsw": 500,
+	"npar": 4,
+	"kpar": 4
   }
 }
