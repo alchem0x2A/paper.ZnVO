@@ -14,7 +14,44 @@ from ase.parallel import parprint
 
 from ase.calculators.vasp import Vasp
 
+ggau = {"Zn": 0,
+        "Co": 3.3,
+        "V": 3.5,
+        "H": 0,
+        "O": 0}
 
+# Possible for newest version
+ggau_luj = {"Zn": {"L": -1, "U": 0.0, "J":0.0},
+        "Co": {"L": 2, "U": 3.3, "J":0.0},
+        "V": {"L": 2, "U": 3.5, "J":0.0},
+        "H": {"L": -1, "U": 0.0, "J":0.0},
+        "O": {"L": -1, "U": 0.0, "J":0.0}
+}
+
+def split_dict(atoms):
+    elems = atoms.get_chemical_symbols()
+    new_dict = {k:ggau_luj[k] for k in ggau_luj if k in elems}
+    return new_dict
+
+# Deprecated
+# def gen_keys(atoms):
+    # elems = atoms.get_chemical_symbols()
+    # used = {key:False for key in ggau}
+    # ldaul = []
+    # ldauu = []
+    # ldauj = []
+    # for s in elems:
+        # if used[s] is not True:
+            # u = ggau[s]
+            # ldauu.append(u)
+            # if u != 0:
+                # ldaul.append(2)
+                # ldauj.append(0.0)
+            # else:
+                # ldaul.append(-1)
+                # ldauj.append(0.0)
+    # return ldaul, ldauu, ldauu
+                
 # Relax the atoms by recursively unitcell-position relaxation
 # Now support for VASP
 def relax(atoms, name="", base_dir="./",
@@ -32,9 +69,15 @@ def relax(atoms, name="", base_dir="./",
     # VASP restart only possible for CONTCAR existence
     if not os.path.exists("CONTCAR"):
         params["relax"]["restart"] = False
+    params["relax"]["ldau"] = True
+    # ldaul, ldauu, ldauj = gen_keys(atoms)
+    params["relax"]["ldau_luj"] = split_dict(atoms)
     calc = Vasp(**params["relax"])
     atoms.set_calculator(calc)
-    parprint("VASP", calc.atoms)
+    
+    # print(atoms.get_chemical_symbols())
+    # parprint("VASP", calc.atoms)
+    # calc.clean()
     # optimizations
     atoms.get_potential_energy()
     return True

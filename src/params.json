@@ -4,9 +4,9 @@
 	"xc": "pbe",
 	"setups" : {"H": "",
 		    "O": "",
-		    "V": "",
+		    "V": "_pv",
 		    "Zn": "",
-		    "Co": ""}, 
+		    "Co": "_pv"}, 
 	"kpts": {
 	    "gamma": true,
 	    "density": 5.0
