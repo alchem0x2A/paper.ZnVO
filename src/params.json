@@ -1,40 +1,54 @@
 {
   "relax": {
-    "xc": "vdW-DF2",
+    "xc": "PBE",
     "kpts": {
       "gamma": true,
-      "density": 5.0
+      "density": 3.0
     },
     "basis": "dzp",
     "mode": {
       "ecut": 500.0,
       "name": "pw"
     },
+    "setups": {
+      "V": ":d,6.6",
+      "Co": ":d,3.3",
+      "Zn": ":d,5.0"
+    },
     "occupations": {
       "width": 0.025,
       "name": "fermi-dirac"
     },
+    "convergence": {
+      "eigenstates": 0.0001,
+      "energy": 0.0002
+    },
     "parallel": {
-      "band": 4
+      "kpt": 1
     }
   },
   "gs": {
-    "xc": "vdW-DF2",
+    "xc": "PBE",
     "kpts": {
       "gamma": true,
-      "density": 10
+      "density": 5.0
     },
     "basis": "dzp",
     "mode": {
       "ecut": 800,
       "name": "pw"
     },
+    "setups": {
+      "V": ":d,6.6",
+      "Co": ":d,3.3",
+      "Zn": ":d,5.0"
+    },
     "occupations": {
       "width": 0.025,
       "name": "fermi-dirac"
     },
     "parallel": {
-      "band": 4
+      "kpt": 1
     }
   }
 }

@@ -4,7 +4,7 @@ import os.path
 import json
 import time
 
-from ase.parallel import parprint
+from ase.parallel import parprint, broadcast, world, rank
 from ase.io import read
 import ase.db
 from ase.optimize import QuasiNewton, BFGS
@@ -34,39 +34,33 @@ def relax(atoms, name="", base_dir="./",
                                 "relax.log")
     # If has trajectory, use the last image
     if os.path.exists(traj_filename):
-        parprint("Has rejectory file, use directly!")
-        t = Trajectory(traj_filename)
-        atoms = t[-1]           # use the last image
-        parprint("New atom position", atoms)
+        try:
+            t = Trajectory(traj_filename)
+            atoms = t[-1]           # use the last image
+            parprint("Has rejectory file, use directly!")
+            parprint("New atom position", atoms)
+        except Exception as e:
+            parprint("Trajectory file may be corrupted!")
 
-    calc = GPAW(**params["relax"])
+    world.barrier()
+    calc = GPAW(**params["relax"],
+                txt=os.path.join(base_dir, "relax.txt"))
+    parprint("Init magmom", atoms.get_initial_magnetic_moments())
     atoms.set_calculator(calc)
     # optimizations
     max_iter = 3
-    i = 0
-        # unitcell optimization
-    sf = StrainFilter(atoms, mask=[1, 1, 1, 0, 0, 0])
-        # parprint(atoms, atoms.constraints)
-        # atoms.set_constraint(sf)
-        # parprint(atoms, atoms.constraints)
-    opt_cell = BFGS(sf, logfile=log_filename,
-                               trajectory=traj_filename)
-        
-    opt_cell.run(fmax=fmax)
-    # parprint("Iter {}, unit cell optimization: stress {}, force {}".format(i,
-                                                                           # max(atoms.get_stress()),
-                                                                           # max(atoms.get_forces())))
-        # remove the constraints
-    atoms.set_constraint()  # Free!
-    opt_norm = BFGS(atoms,
-                    logfile=log_filename,
-                    trajectory=traj_filename)
-    opt_norm.run(fmax=fmax)
-    # parprint("Iter {}, atoms optimization: stress {}, force {}".format(i,
-                                                                           # max(atoms.get_stress()),
-                                                                           # max(atoms.get_forces())))
-
-    # If relaxation finished, perform ground state calculation
+    sf = StrainFilter(atoms)
+    for _ in range(max_iter):
+        opt_cell = BFGS(sf,
+                        logfile=log_filename,
+                        trajectory=traj_filename)
+        opt_norm = BFGS(atoms,
+                        logfile=log_filename,
+                        trajectory=traj_filename)
+        opt_cell.run(fmax=fmax)
+        opt_norm.run(fmax=fmax)
+    atoms.write(os.path.join(base_dir, "relaxed.traj"))
     calc.set(**params["gs"])
     atoms.get_potential_energy()
     calc.write(gpw_file, mode="all")
+    return True

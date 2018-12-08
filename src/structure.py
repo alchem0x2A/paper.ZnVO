@@ -63,6 +63,13 @@ def get_structure(name):
             ph = o.position + vec_ph * l_OH
             h = Atom("H", ph)
             mol.append(h)
+
+    # Add initial magmom
+    symbols = numpy.array(mol.get_chemical_symbols())  # for comparison
+    magmom = numpy.zeros(len(symbols))
+    magmom[symbols == "V"] = 0.25
+    magmom[symbols == "Co"] = 2.0
+    mol.set_initial_magnetic_moments(magmom)
     return mol
 
 if __name__ == "__main__":
