@@ -37,7 +37,7 @@ def relax(atoms, name="", base_dir="./",
         try:
             t = Trajectory(traj_filename)
             atoms = t[-1]           # use the last image
-            parprint("Has rejectory file, use directly!")
+            parprint("Has trajectory file, use directly!")
             parprint("New atom position", atoms)
         except Exception as e:
             parprint("Trajectory file may be corrupted!")

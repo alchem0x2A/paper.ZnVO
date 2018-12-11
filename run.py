@@ -7,6 +7,7 @@ from src.relax import relax
 import shutil
 from ase.parallel import paropen, parprint, world, rank, broadcast
 
+
 # Name=Zn,  Co
 def main(name,
          # root="../ZnVO/",
