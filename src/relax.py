@@ -30,12 +30,14 @@ def relax(atoms, name="", base_dir="./",
     # Perform relaxation process
     traj_filename = os.path.join(base_dir,
                                  "relax.traj")
+    old_traj_filename = os.path.join(base_dir,
+                                 "relax.old.traj")
     log_filename = os.path.join(base_dir,
                                 "relax.log")
     # If has trajectory, use the last image
-    if os.path.exists(traj_filename):
+    if os.path.exists(old_traj_filename):
         try:
-            t = Trajectory(traj_filename)
+            t = Trajectory(old_traj_filename)
             atoms = t[-1]           # use the last image
             parprint("Has trajectory file, use directly!")
             parprint("New atom position", atoms)
