@@ -3,7 +3,7 @@
     "xc": "PBE",
     "kpts": {
       "gamma": true,
-      "density": 3.0
+      "density": 1.0
     },
     "basis": "dzp",
     "mode": {

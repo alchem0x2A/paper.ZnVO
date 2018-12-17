@@ -8,7 +8,7 @@ from ase.parallel import parprint, broadcast, world, rank
 from ase.io import read
 import ase.db
 from ase.optimize import QuasiNewton, BFGS
-from ase.constraints import UnitCellFilter, StrainFilter
+from ase.constraints import UnitCellFilter, StrainFilter, ExpCellFilter
 from ase.io.trajectory import Trajectory
 
 from gpaw import GPAW, PW, FermiDirac
@@ -52,17 +52,25 @@ def relax(atoms, name="", base_dir="./",
     # optimizations
     max_iter = 3
     sf = StrainFilter(atoms)
-    for _ in range(max_iter):
+    # sf = ExpCellFilter(atoms)
+    # opt_unitcell = BFGS(sf,
+                        # logfile=log_filename,
+                        # trajectory=traj_filename)
+    # opt_unitcell.run(fmax=fmax)
+    # for _ in range(max_iter):
+    for _ in range(1):
         opt_cell = BFGS(sf,
                         logfile=log_filename,
                         trajectory=traj_filename)
         opt_norm = BFGS(atoms,
                         logfile=log_filename,
                         trajectory=traj_filename)
-        opt_cell.run(fmax=fmax)
         opt_norm.run(fmax=fmax)
+        opt_cell.run(fmax=fmax)
     atoms.write(os.path.join(base_dir, "relaxed.traj"))
-    calc.set(**params["gs"])
+    calc.set(**params["gs"],
+             txt=os.path.join(base_dir,
+                              "ground_state.txt"))
     atoms.get_potential_energy()
     calc.write(gpw_file, mode="all")
     return True
