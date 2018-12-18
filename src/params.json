@@ -46,9 +46,6 @@
     "occupations": {
       "width": 0.025,
       "name": "fermi-dirac"
-    },
-    "parallel": {
-      "kpt": 1
     }
   }
 }

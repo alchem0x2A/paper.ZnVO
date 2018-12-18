@@ -1,6 +1,6 @@
 import numpy
 import os
-import os.path
+import shutil
 import json
 import time
 
@@ -50,7 +50,7 @@ def relax(atoms, name="", base_dir="./",
     parprint("Init magmom", atoms.get_initial_magnetic_moments())
     atoms.set_calculator(calc)
     # optimizations
-    max_iter = 3
+    max_iter = 10
     sf = StrainFilter(atoms)
     # sf = ExpCellFilter(atoms)
     # opt_unitcell = BFGS(sf,
@@ -58,15 +58,18 @@ def relax(atoms, name="", base_dir="./",
                         # trajectory=traj_filename)
     # opt_unitcell.run(fmax=fmax)
     # for _ in range(max_iter):
-    for _ in range(1):
-        opt_cell = BFGS(sf,
-                        logfile=log_filename,
-                        trajectory=traj_filename)
-        opt_norm = BFGS(atoms,
-                        logfile=log_filename,
-                        trajectory=traj_filename)
+    # for _ in range(max_iter):
+    opt_cell = BFGS(sf,
+                    logfile=log_filename,
+                    trajectory=traj_filename)
+    opt_norm = BFGS(atoms,
+                    logfile=log_filename,
+                    trajectory=traj_filename)
+    for _ in opt_cell.irun(fmax=fmax):
         opt_norm.run(fmax=fmax)
-        opt_cell.run(fmax=fmax)
+        shutil.copyfile(traj_filename, old_traj_filename)
+        
+    # opt_cell.run(fmax=fmax)
     atoms.write(os.path.join(base_dir, "relaxed.traj"))
     calc.set(**params["gs"],
              txt=os.path.join(base_dir,
