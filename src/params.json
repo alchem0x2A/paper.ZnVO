@@ -19,9 +19,9 @@
       "width": 0.025,
       "name": "fermi-dirac"
     },
-    "convergence": {
-      "eigenstates": 0.0001,
-      "energy": 0.0002
+      "convergence": {
+	  "eigenstates": 1e-4,
+	  "energy": 2e-4
     },
     "parallel": {
       "kpt": 1
@@ -31,11 +31,11 @@
     "xc": "PBE",
     "kpts": {
       "gamma": true,
-      "density": 5.0
+      "density": 3.0
     },
     "basis": "dzp",
     "mode": {
-      "ecut": 800,
+      "ecut": 500,
       "name": "pw"
     },
     "setups": {
@@ -44,7 +44,7 @@
       "Zn": ":d,5.0"
     },
     "occupations": {
-      "width": 0.025,
+      "width": 0.05,
       "name": "fermi-dirac"
     }
   }

@@ -68,7 +68,7 @@ def get_structure(name):
     symbols = numpy.array(mol.get_chemical_symbols())  # for comparison
     magmom = numpy.zeros(len(symbols))
     magmom[symbols == "V"] = 0.25
-    magmom[symbols == "Co"] = 2.0
+    magmom[symbols == "Co"] = 3.0
     mol.set_initial_magnetic_moments(magmom)
     return mol
 
