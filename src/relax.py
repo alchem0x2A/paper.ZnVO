@@ -58,6 +58,7 @@ def relax(atoms, name="", base_dir="./",
 
         world.barrier()
         calc = GPAW(**params["relax"],
+                    mixer=MixerSum(0.05, 5, 100),
                     txt=os.path.join(base_dir, "relax.txt"))
         parprint("Init magmom", atoms.get_initial_magnetic_moments())
         atoms.set_calculator(calc)

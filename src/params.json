@@ -16,7 +16,7 @@
       "Zn": ":d,5.0"
     },
     "occupations": {
-      "width": 0.025,
+      "width": 0.1,
       "name": "fermi-dirac"
     },
       "convergence": {
@@ -46,6 +46,34 @@
     "occupations": {
       "width": 0.05,
       "name": "fermi-dirac"
+    }
+  },
+  "neb": {
+    "xc": "PBE",
+    "kpts": {
+      "gamma": true,
+      "density": 1.0
+    },
+    "basis": "dzp",
+    "mode": {
+      "ecut": 500.0,
+      "name": "pw"
+    },
+    "setups": {
+      "V": ":d,6.6",
+      "Co": ":d,3.3",
+      "Zn": ":d,5.0"
+    },
+    "occupations": {
+      "width": 0.01,
+      "name": "fermi-dirac"
+    },
+      "convergence": {
+	  "eigenstates": 1e-4,
+	  "energy": 2e-4
+    },
+    "parallel": {
+      "kpt": 1
     }
   }
 }
