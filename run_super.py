@@ -4,6 +4,7 @@ import os, os.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from src.structure import get_structure
 from src.supercell import make_super, add_adatom
+from src.neb_ghost import neb as neb_ghost
 from src.neb import neb
 import shutil
 from ase.parallel import paropen, parprint, world, rank, broadcast
@@ -15,7 +16,7 @@ def main(name,
          # root="../ZnVO/",
          root="/cluster/scratch/ttian/ZnVO",
          clean=False):
-    if name not in ("Zn", "Co"):
+    if name not in ("Zn", "Co", "ghost-Co"):
         return False
 
     # Directory
@@ -36,7 +37,10 @@ def main(name,
     # add_adatom(atoms, scaled_pos=(1 / 2, 1 / 2, 1 / 2))
     # parprint(atoms)
     # view(atoms.copy())
-    neb(base_dir=base_dir)
+    if name in ("Zn", "Co"):
+        neb(base_dir=base_dir)
+    else:
+        neb_ghost(base_dir=base_dir)
     return 0
 
 if __name__ == "__main__":

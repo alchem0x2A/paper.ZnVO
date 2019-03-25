@@ -65,7 +65,7 @@
       "Zn": ":d,5.0"
     },
     "occupations": {
-      "width": 0.01,
+      "width": 0.1,
       "name": "fermi-dirac"
     },
       "convergence": {
