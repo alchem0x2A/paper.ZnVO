@@ -33,13 +33,13 @@ from gpaw import GPAW
         # world.barrier()
     # return gpw_file
 
-def make_super(base_dir="./"):
+def make_super(base_dir="./", super_cell=[2, 2, 1]):
     traj_fin_filename = os.path.join(base_dir,
                                      "relaxed.traj")
     assert os.path.exists(traj_fin_filename)  # Should exists
     atoms = ase.io.read(traj_fin_filename)      # final image
     super_atoms = make_supercell(atoms,
-                                 numpy.diag([2, 2, 1]))
+                                 numpy.diag(super_cell))
     # Add fixation for All VO
     scaled_pos = super_atoms.get_scaled_positions()
     lim = 0.3
